@@ -6,6 +6,18 @@ Open-Sourced community contributed and owned repository for Instance Scan Defini
 
 ## Category: Manageability
 
+### Active approval for inactive task
+Approvals for inactive tasks indicate a process error or a technical error. Tasks should not proceed when approvals are still open or only cancelled. If cancelled, active approvals should be too.
+
+### Active Notifications with inactive recipient Users
+Validate that all notifications are configured with active users if there are any defined under the "Users" field.
+
+### Active Users with inactive Manager
+Validate that all users are configured with an active user if there is any defined under the "Managers" field.
+
+### Active Workflow Context with Inactive Parent
+Workflows are generally run during the lifecycle of a record. When the record reaches a closed state, the Workflow should be finished. Still running Workflows might indicate an issue in your environment, for example the Workflow itself, related scripting, etc..
+
 ### Consider using getXMLAnswer instead of getXML
 getXMLAnswer only retrieves the Answer which we are actually after. getXML retrieves the whole XML document. In most cases, we are not interested in the whole XML document, though only in the Answer.
 For the rare cases where you are interested in the whole XML document, simply mute the generated scan finding.
@@ -48,6 +60,9 @@ Hard coding instance URL is not a best practice as they reduce the usability of 
 
 ### Before Business rules should not insert() records in any tables
 Before business rules execute before the data on current record is saved to database. In case, the before business rule fails or aborts its operation, then any insert operations within the business rule becomes invalid but it cannot be reverted back as the operation would have already been completed. In order to avoid such issues, before business rules should not include insert operations.
+
+### Orphan Incident Tasks
+Incident Tasks that are not associated with an Incident will most likely never be seen and modified. Every Incident Task should have a parent Incident as they always should be a part of an Incident.
 
 ### Update set description should not be empty
 Validates the description of the update sets created is not empty as it provides the release management team better understanding what's getting pushed.
